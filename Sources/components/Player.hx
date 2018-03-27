@@ -1,6 +1,5 @@
 package components;
 
-import kha.Key;
 
 import komponent.physics.CollisionData2D;
 
@@ -28,12 +27,12 @@ class Player extends Component
 
 	override public function added() 
 	{		
-		Keyboard.define("up", [Key.UP]);
-		Keyboard.define("down", [Key.DOWN]);
-		Keyboard.define("left", [Key.LEFT]);
-		Keyboard.define("right", [Key.RIGHT]);
-		Keyboard.define("rotate_left", ["y"]);
-		Keyboard.define("rotate_right", ["x"]);
+		Keyboard.define("up", [kha.input.KeyCode.Up]);
+		Keyboard.define("down", [kha.input.KeyCode.Down]);
+		Keyboard.define("left", [kha.input.KeyCode.Left]);
+		Keyboard.define("right", [kha.input.KeyCode.Right]);
+		Keyboard.define("rotate_left", [kha.input.KeyCode.Y]);
+		Keyboard.define("rotate_right", [kha.input.KeyCode.X]);
 		
 		Input.defineAxis("horizontal", [KEYBOARD("left", -1), KEYBOARD("right", 1)]);
 		Input.defineAxis("vertical", [KEYBOARD("up", -1), KEYBOARD("down", 1)]);

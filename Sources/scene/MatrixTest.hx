@@ -1,9 +1,8 @@
 package scene;
 
 import kha.Font;
-import kha.Key;
+import kha.input.KeyCode;
 import kha.FontStyle;
-import kha.Loader;
 import kha.Color;
 
 import komponent.ds.Matrix;
@@ -31,7 +30,7 @@ class MatrixTest extends Scene
 	{
 		//font = Loader.the.loadFont("Arimo", new FontStyle(false, false, false), 20);
 		
-		var camera = new GameObject("Camera", 0, 0);
+	var camera = new GameObject("Camera", 0, 0);
 		camera.addComponent(Camera);
 		camera.addComponent(CameraController);
 		
@@ -39,25 +38,25 @@ class MatrixTest extends Scene
 		ship.addComponent(ShipController);
 		ship.transform.localLayer = -1;
 		
-		var name = new GameObject("ShipName", 0, -60);
+		/*var name = new GameObject("ShipName", 0, -60);
 		//name.addComponent(Text).set("Ship", font);
 		name.transform.localScaleX = name.transform.localScaleY = 2;
 		name.transform.attachTo(ship);
 		
 		var rect = new GameObject("Rectangle", 0, 0);
 		rect.addComponent(Image).load("Rect");
-		rect.transform.localScaleX = rect.transform.localScaleY = 0.75;
+		rect.transform.localScaleX = rect.transform.localScaleY = 0.75;*/
 		
 		
-		Keyboard.define("move_left", ["a"], [Key.LEFT]);
-		Keyboard.define("move_right", ["d"], [Key.RIGHT]);
-		Keyboard.define("move_up", ["w"], [Key.UP]);
-		Keyboard.define("move_down", ["s"], [Key.DOWN]);
-		Keyboard.define("rotate_left", ["q"]);
-		Keyboard.define("rotate_right", ["e"]);
-		Keyboard.define("zoom_in", ["r"]);
-		Keyboard.define("zoom_out", ["f"]);
-		Keyboard.define("switch_control", [" "]);
+		Keyboard.define("move_left", [KeyCode.A], [KeyCode.Left]);
+		Keyboard.define("move_right", [KeyCode.D], [KeyCode.Right]);
+		Keyboard.define("move_up", [KeyCode.W], [KeyCode.Up]);
+		Keyboard.define("move_down", [KeyCode.S], [KeyCode.Down]);
+		Keyboard.define("rotate_left", [KeyCode.Q]);
+		Keyboard.define("rotate_right", [KeyCode.E]);
+		Keyboard.define("zoom_in", [KeyCode.R]);
+		Keyboard.define("zoom_out", [KeyCode.F]);
+		Keyboard.define("switch_control", [KeyCode.Space]);
 		
 		Input.defineAxis("horizontal", [KEYBOARD("move_left", -1), KEYBOARD("move_right", 1)]);
 		Input.defineAxis("vertical", [KEYBOARD("move_up", -1), KEYBOARD("move_down", 1)]);

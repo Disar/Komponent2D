@@ -1,8 +1,6 @@
 package scene;
 
-import kha.Button;
 import kha.Color;
-import kha.Key;
 import kha.math.Vector2;
 
 import komponent.GameObject;
@@ -37,15 +35,15 @@ class GameScene extends Scene
 		
 		new GameObject("Camera", 0, 0).addComponent(Camera);
 		
-		Keyboard.define("restart", ["r"], [Key.CTRL], true);
+		Keyboard.define("restart", [kha.input.KeyCode.R], [kha.input.KeyCode.Control], true);
 		//Keyboard.define("debug", ["d"], [Key.CTRL], true);
 		
-		Keyboard.define("camera_up", ["w"]);
-		Keyboard.define("camera_down", ["s"]);
-		Keyboard.define("camera_left", ["a"]);
-		Keyboard.define("camera_right", ["d"]);
-		Keyboard.define("camera_rotation_left", ["q"]);
-		Keyboard.define("camera_rotation_right", ["e"]);
+		Keyboard.define("camera_up", [kha.input.KeyCode.W]);
+		Keyboard.define("camera_down", [kha.input.KeyCode.S]);
+		Keyboard.define("camera_left", [kha.input.KeyCode.A]);
+		Keyboard.define("camera_right", [kha.input.KeyCode.D]);
+		Keyboard.define("camera_rotation_left", [kha.input.KeyCode.Q]);
+		Keyboard.define("camera_rotation_right", [kha.input.KeyCode.E]);
 		
 		Input.defineAxis("camera_horizontal", [KEYBOARD("camera_left", -1), KEYBOARD("camera_right", 1)]);
 		Input.defineAxis("camera_vertical", [KEYBOARD("camera_up", -1), KEYBOARD("camera_down", 1)]);

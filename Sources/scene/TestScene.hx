@@ -1,8 +1,5 @@
 package scene ;
 
-import kha.Button;
-import kha.Key;
-
 import komponent.GameObject;
 import komponent.Scene;
 import komponent.input.Keyboard;
@@ -11,7 +8,7 @@ import komponent.utils.Screen;
 import komponent.components.misc.Camera;
 import komponent.components.graphic.Image;
 import komponent.components.misc.Debug;
-import komponent.components.physics.nape.Hitbox;
+import komponent.components.physics.Hitbox;
 import komponent.components.graphic.Animation;
 
 import components.FollowMouse;
@@ -30,13 +27,13 @@ class TestScene extends Scene
 		
 		new GameObject("Camera", 0, 0).addComponent(Camera);
 		
-		Keyboard.define("restart", ["r"]);
-		Keyboard.define("debug", ["d"]);
+		Keyboard.define("restart", [kha.input.KeyCode.R]);
+		Keyboard.define("debug", [kha.input.KeyCode.D]);
 		
-		Keyboard.define("up", [""], [Key.UP]);
-		Keyboard.define("down", [""], [Key.DOWN]);
-		Keyboard.define("left", [""], [Key.LEFT]);
-		Keyboard.define("right", [""], [Key.RIGHT]);
+		Keyboard.define("up", [kha.input.KeyCode.W], [kha.input.KeyCode.Up]);
+		Keyboard.define("down", [kha.input.KeyCode.S], [kha.input.KeyCode.Down]);
+		Keyboard.define("left", [kha.input.KeyCode.A], [kha.input.KeyCode.Left]);
+		Keyboard.define("right", [kha.input.KeyCode.D], [kha.input.KeyCode.Right]);
 		
 		var wabbit = new GameObject("Wabbit", 50, 50);
 		wabbit.addComponent(Image).load("wabbit");
