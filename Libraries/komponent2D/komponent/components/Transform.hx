@@ -63,8 +63,12 @@ class Transform extends Component
 	 */
 	public var root(get, never):Transform;
 	
+
+	private var isDirty:Bool = true;
+
 	override public function added()
 	{
+		matrix = Matrix.identity();		
 		children = [];
 		resetWorld();
 		reset();
@@ -151,19 +155,26 @@ class Transform extends Component
 	private function updateWorldTransformation()
 	{
 		resetWorld();
-		matrix = null;
-		var current:Transform = this;
-		while (current != null)
+		isDirty = true;
+		
+		if (parent != null)
 		{
-			x += current.localX;
-			y += current.localY;
-			rotation += current.localRotation;
-			scaleX *= current.localScaleX;
-			scaleY *= current.localScaleY;
-			layer += current.localLayer;
-			
-			current = current.parent;
+			x = parent.x + localX;
+			y = parent.y + localY;
+			rotation = parent.rotation + localRotation;
+			scaleX = parent.scaleX * localScaleX;
+			scaleY = parent.scaleY * localScaleY;	
 		}
+		else{
+			x = localX;
+			y = localY;
+			rotation = localRotation;
+			scaleX = localScaleX;
+			scaleY = localScaleY;
+		}
+		
+		layer += localLayer;
+		
 		sendMessage("onTransformChange", this);
 		
 		for (child in children)
@@ -225,14 +236,19 @@ class Transform extends Component
 	
 	private function get_matrix():Matrix
 	{
-		if (matrix == null)
+		if (isDirty)
 		{
-			/*
-			matrix = Matrix.translation(x, y) *
-			 		 Matrix.scale(scaleX, scaleY) *
-					 Matrix.rotation(rotation * Math.PI / 180);
-			*/
-			matrix = Matrix.rotation(rotation * Misc.toRad).multmat(Matrix.translation(x, y).multmat(Matrix.scale(scaleX, scaleY)));
+			matrix.setFrom(Matrix.identity());
+			
+			matrix.setFrom(matrix.multmat(Matrix.translation(localX, localY)));
+			matrix.setFrom(matrix.multmat(Matrix.scale(localScaleX, localScaleY)));
+			matrix.setFrom(matrix.multmat(Matrix.rotation(localRotation * Misc.toRad)));
+			
+			if(parent != null)
+			matrix.setFrom(parent.matrix.multmat(matrix));
+
+			//matrix.setFrom(Matrix.rotation(rotation * Misc.toRad).multmat(Matrix.translation(x, y).multmat(Matrix.scale(scaleX, scaleY))));
+			isDirty = false;
 		}
 		return matrix;
 	}

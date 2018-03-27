@@ -9,7 +9,7 @@ class Main {
 	public static function main() {
 
 		System.init({title: "Komponent2D", width: 800, height:600}, function () {
-			var e =  new Engine("Test", TestScene);
+			var e =  new Engine("Test", MatrixTest);
 			e.init();
 		});
 	}

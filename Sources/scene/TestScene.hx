@@ -25,7 +25,9 @@ class TestScene extends Scene
 		
 		engine.debug = true;
 		
-		new GameObject("Camera", 0, 0).addComponent(Camera);
+		var c = new GameObject("Camera", 0, 0);
+		c.addComponent(Camera);
+		
 		
 		Keyboard.define("restart", [kha.input.KeyCode.R]);
 		Keyboard.define("debug", [kha.input.KeyCode.D]);

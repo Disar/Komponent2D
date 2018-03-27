@@ -75,17 +75,20 @@ class Graphic extends Component
 	{
 		if (matrix == null)
 		{
-			/*
-			matrix = Matrix.translation(transform.x, transform.y) *
-					 Matrix.scale(transform.scaleX * -Misc.sign(flipX), transform.scaleY * -Misc.sign(flipY)) *
-					 Matrix.rotation(transform.rotation * Misc.toRad) *
-					 Matrix.translation( - width / 2, - height / 2);
-			*/
-			var translation = Matrix.translation(transform.x, transform.y);
-			var scale = Matrix.scale(transform.scaleX * -Misc.sign(flipX), transform.scaleY * -Misc.sign(flipY));
-			var rotation = Matrix.rotation(transform.rotation * Misc.toRad);
+			var translation = Matrix.translation(transform.localX, transform.localY);
+			var scale = Matrix.scale(transform.localScaleX * -Misc.sign(flipX), transform.localScaleY * -Misc.sign(flipY));
+			var rotation = Matrix.rotation(transform.localRotation * Misc.toRad);
 			var centerTranslation = Matrix.translation( - width / 2, - height / 2);
-			matrix = centerTranslation.multmat(rotation.multmat(translation.multmat(scale)));
+		
+			matrix = Matrix.identity();
+			matrix.setFrom(matrix.multmat(translation));
+			matrix.setFrom(matrix.multmat(scale));
+			matrix.setFrom(matrix.multmat(rotation));
+			
+			if(transform.parent!= null)
+			matrix.setFrom(transform.parent.matrix.multmat(matrix));
+
+			matrix.setFrom(matrix.multmat(centerTranslation));
 		}
 		return matrix;
 	}

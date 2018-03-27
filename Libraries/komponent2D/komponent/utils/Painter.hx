@@ -124,11 +124,14 @@ class Painter
 		g2.fillPolygon(x, y, vertices);
 	}
 	
-	public static inline function set(color:Color, alpha:Float, font:Font = null):Void
+	public static inline function set(color:Color, alpha:Float):Void
 	{
 		Painter.color = color;
 		Painter.alpha = alpha;
-		//Painter.font = font;
+	}
+
+	public static inline function setFont(font:Font = null){
+		Painter.font = font;
 	}
 	
 	private static inline function set_backbuffer(value:Image):Image

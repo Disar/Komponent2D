@@ -29,12 +29,11 @@ class Text extends Graphic
 	{
 		if (visible && font != null)
 		{
-			//Painter.set(color, alpha, font);
+			Painter.setFont(font);
 			for (camera in Screen.cameras)
 			{
-				//Painter.matrix = camera.matrix * matrix;
 				Painter.matrix = FastMatrix.fromMatrix3(camera.matrix.multmat(matrix));
-				//Painter.drawString(text, 0, 0);
+				Painter.drawString(text, 0, 0);
 				Painter.matrix = null;
 			}
 		}
