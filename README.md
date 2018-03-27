@@ -4,8 +4,9 @@ Its API is inspired by HaxePunk, Zerk and Unity3D.
 
 ##Requirements
 * **Kha**
-* **Nape**
-* **Yaml**
+* **Differ** install trough haxelib with git, or clone into Libraries
+* **Yaml** install haxelib
+* **CompileTime** install with haxelib
 
 ##Contents
 * **Yaml**

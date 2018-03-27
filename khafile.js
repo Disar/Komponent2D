@@ -5,5 +5,4 @@ project.addLibrary('CompileTime');
 project.addLibrary('differ');
 project.addLibrary('komponent2D');
 project.addLibrary('yaml');
-project.addLibrary('nape');
 resolve(project);

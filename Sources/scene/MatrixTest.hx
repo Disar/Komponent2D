@@ -45,7 +45,7 @@ class MatrixTest extends Scene
 		
 		//rect.transform.localScaleX = rect.transform.localScaleY = 0.75;
 
-		font = kha.Assets.fonts.droidsans_final_fixed;
+		font = kha.Assets.fonts.Arimo_Regular;
 		var name = new GameObject("ShipName", 0, -60);
 		name.addComponent(Text).set("Ship", font);
 		name.transform.localScaleX = name.transform.localScaleY = 2;
